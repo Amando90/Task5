@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+	title_cell = style.add_style(bg_color: "e74c3c")
+
+	wb.add_worksheet(name: "Posts") do |sheet|
+		@comments.each do |c|
+			sheet.add_row [c.content], style: [title_cell]
+		end
+	end
+end

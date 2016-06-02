@@ -1,0 +1,12 @@
+wb = xlsx_package.workbook
+wb.styles do |style|
+	title_cell = style.add_style(bg_color: "e74c3c")
+	caption_cell = style.add_style(bg_color: "2ecc71")
+	date_cell = style.add_style(bg_color: "3498db")
+
+	wb.add_worksheet(name: "Posts") do |sheet|
+		@posts.each do |post|
+			sheet.add_row [post.title, post.caption, post.created_at], style: [title_cell, caption_cell, date_cell]
+		end
+	end
+end

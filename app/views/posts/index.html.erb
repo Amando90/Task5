@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Posts</h1>
+
+<%= link_to 'Download as .xlsx', posts_path(format: :xlsx) %> || 
+<%= link_to 'New Post', new_post_path %>
+
+<br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Caption</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.caption %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br><br>
+
+<h2>Import Products</h2>
+
+<%= form_tag import_posts_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
